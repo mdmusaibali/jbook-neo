@@ -1,0 +1,12 @@
+@use "./../../scss/variables.scss" as var;
+
+@mixin shadow() {
+  box-shadow: 8px 8px 0 var.$color-black;
+}
+
+.code-cell {
+  margin: 0 auto;
+  border-radius: var.$border-radius-medium-1;
+  overflow: hidden;
+  @include shadow;
+}

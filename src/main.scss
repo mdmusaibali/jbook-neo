@@ -1,0 +1,33 @@
+@use "./scss/variables.scss" as variables;
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: variables.$color-primary;
+}
+
+.button {
+  &--primary {
+    background-color: variables.$color-secondary;
+    border: none;
+    padding: 10px;
+    font-weight: 600;
+    color: variables.$color-black;
+    box-shadow: 3px 3px 0 variables.$color-black;
+    border-radius: variables.$border-radius-medium;
+    cursor: pointer;
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+}

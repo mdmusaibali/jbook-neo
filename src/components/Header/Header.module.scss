@@ -1,0 +1,17 @@
+@use "./../../scss/variables.scss" as variables;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  .heading {
+    font-family: "Bangers", cursive;
+    font-size: 3rem;
+  }
+  .install {
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-weight: 500;
+    color: variables.$color-black;
+  }
+}
