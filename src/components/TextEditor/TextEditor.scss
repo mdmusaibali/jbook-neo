@@ -1,0 +1,18 @@
+@use "./../../scss/variables.scss" as var;
+@import "./../../scss/mixins.scss";
+
+.text-editor {
+  @include shadow();
+  border-radius: var.$border-radius-medium-1;
+  overflow: hidden;
+
+  .w-md-editor-bar {
+    height: 10px;
+    cursor: row-resize;
+    width: 100%;
+    position: relative;
+    & svg {
+      display: none;
+    }
+  }
+}

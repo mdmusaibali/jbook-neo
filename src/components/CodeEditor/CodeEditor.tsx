@@ -49,7 +49,7 @@ ReactDOM.render(<App />, document.querySelector("#root"));
         value={value}
         onChange={onChange}
         defaultLanguage="javascript"
-        // theme="vs-dark"
+        theme="vs-dark"
         onMount={onMount}
         options={{
           formatOnType: true,
