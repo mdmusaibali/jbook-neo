@@ -5,5 +5,8 @@
   margin: 0 auto;
   border-radius: var.$border-radius-medium-1;
   overflow: hidden;
+  background-color: #1e1e1e;
+
+  border: 3px solid black;
   @include shadow();
 }

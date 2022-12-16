@@ -39,7 +39,7 @@ const TextEditor = () => {
 
   return (
     <div onClick={() => setEditing(true)} data-color-mode="light">
-      <MDEditor.Markdown className="text-editor" source={input} />
+      <MDEditor.Markdown className="text-markdown" source={input} />
     </div>
   );
 };

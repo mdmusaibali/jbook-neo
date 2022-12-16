@@ -1,10 +1,12 @@
 @use "./../../scss/variables.scss" as var;
 @import "./../../scss/mixins.scss";
 
-.text-editor {
+.text-editor,
+.text-markdown {
   @include shadow();
   border-radius: var.$border-radius-medium-1;
   overflow: hidden;
+  border: 3px solid black;
 
   .w-md-editor-bar {
     height: 10px;
@@ -15,4 +17,7 @@
       display: none;
     }
   }
+}
+.text-markdown {
+  cursor: pointer;
 }

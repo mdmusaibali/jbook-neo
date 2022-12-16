@@ -12,18 +12,51 @@
   width: 100%;
   cursor: row-resize;
   opacity: 0;
-  transform: translateY(-6px);
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
+  background-color: rgb(231, 230, 230);
+  transform: translateY(-4px);
+  position: relative;
+  // background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
+
+  &:hover {
+    background-color: rgb(211, 210, 210);
+    filter: grayscale(50%);
+  }
+
+  &::after {
+    content: "·    ·    ·";
+    white-space: pre; /* or pre-wrap */
+    font-weight: 900;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -5px;
+  }
 }
 
 .react-resizable-handle-e {
+  // width: 10px;
   width: 2px;
-  // min-width: 10px;
   height: 100%;
   cursor: col-resize;
-  background-color: #dcdcdb;
   // opacity: 0;
+  background-color: rgb(231, 230, 230);
+  position: relative;
   // background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
+
+  // &::after {
+  //   content: "·\00000a·\00000a·";
+  //   white-space: pre; /* or pre-wrap */
+  //   font-weight: 900;
+  //   position: absolute;
+  //   top: 52%;
+  //   left: 50%;
+  //   transform: translate(-50%, -50%);
+  // }
+
+  &:hover {
+    background-color: rgb(211, 210, 210);
+    filter: grayscale(50%);
+  }
 }
 
 .resize-horizontal {
