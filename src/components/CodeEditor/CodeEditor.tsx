@@ -3,14 +3,19 @@ import React from "react";
 import prettier from "prettier";
 import parser from "prettier/parser-babel";
 import styles from "./CodeEditor.module.scss";
+import { useActions } from "../../hooks/useActions";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 interface CodeEditorProps {
   value: string | undefined;
   onChange: OnChange;
-  setValue: React.Dispatch<React.SetStateAction<string | undefined>>;
+  id: string;
 }
 
-const CodeEditor = ({ value, onChange, setValue }: CodeEditorProps) => {
+const CodeEditor = ({ value, onChange, id }: CodeEditorProps) => {
+  const { updateCell } = useActions();
+  const themeCtx = useTypedSelector((state) => state.theme);
+
   const formatHandler = () => {
     let formattedInput: string = "";
     if (value)
@@ -22,7 +27,8 @@ const CodeEditor = ({ value, onChange, setValue }: CodeEditorProps) => {
           semi: true,
         })
         .replace(/\n$/, "");
-    setValue(formattedInput);
+
+    updateCell({ id, content: formattedInput });
   };
 
   const onMount: OnMount = (monacoEditor) => {};
@@ -49,7 +55,7 @@ ReactDOM.render(<App />, document.querySelector("#root"));
         value={value}
         onChange={onChange}
         defaultLanguage="javascript"
-        theme="vs-dark"
+        theme={themeCtx.theme === "dark" ? "vs-dark" : "light"}
         onMount={onMount}
         options={{
           formatOnType: true,

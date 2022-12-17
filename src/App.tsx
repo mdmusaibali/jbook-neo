@@ -1,14 +1,14 @@
-import CodeCell from "./components/CodeCell/CodeCell";
 import "./App.scss";
 import Header from "./components/Header/Header";
-import TextEditor from "./components/TextEditor/TextEditor";
+import CellList from "./components/CellList/CellList";
 
 function App() {
   return (
     <div className="App">
       <Header />
-      {/* <CodeCell /> */}
-      <TextEditor />
+      <div>
+        <CellList />
+      </div>
     </div>
   );
 }

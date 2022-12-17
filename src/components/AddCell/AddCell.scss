@@ -1,0 +1,24 @@
+@use "./../../scss/variables.scss" as var;
+
+.add-cell {
+  display: flex;
+  gap: 1rem;
+  align-self: center;
+  align-items: center;
+  width: 100%;
+  opacity: 0;
+  transition: all 0.3s ease;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.force-visible .add-cell {
+  opacity: 1;
+}
+
+.horizontal-line {
+  height: 2px;
+  width: 100%;
+  background-color: var.$color-text;
+}

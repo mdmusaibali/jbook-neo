@@ -16,6 +16,14 @@ body {
   background-color: variables.$color-primary;
 }
 
+:root {
+  --color-primary: #50ffaf;
+  --color-secondary: #f2de3a;
+  --color-tertiary: #9c7bff;
+  --color-black: #000;
+  --color-text: #000;
+}
+
 .button {
   &--primary {
     background-color: variables.$color-secondary;
@@ -24,8 +32,29 @@ body {
     font-weight: 600;
     color: variables.$color-black;
     box-shadow: 3px 3px 0 variables.$color-black;
-    border-radius: variables.$border-radius-medium;
+    border-radius: variables.$border-radius-small-2;
     cursor: pointer;
+    transition: all 0.1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+  &--icon {
+    background-color: variables.$color-secondary;
+    border: none;
+    padding: 6px;
+    font-weight: 600;
+    color: variables.$color-black;
+    box-shadow: 3px 3px 0 variables.$color-black;
+    border-radius: variables.$border-radius-small-2;
+    cursor: pointer;
+    transition: all 0.1s ease;
+
     &:active {
       transform: scale(0.9);
     }

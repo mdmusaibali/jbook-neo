@@ -5,31 +5,36 @@ import bundle from "./../../bundler";
 import Preview from "./../Preview/Preview";
 import Resizable from "../Resizable/Resizable";
 import "./CodeCell.scss";
+import { Cell } from "../../store/types/cells";
+import { useActions } from "../../hooks/useActions";
 
-function CodeCell() {
+interface CodeCellProps {
+  cell: Cell;
+}
+
+const CodeCell = ({ cell }: CodeCellProps) => {
   const [code, setCode] = useState<string | undefined>("");
   const [err, setErr] = useState<string | undefined>("");
-  const [input, setInput] = useState<string | undefined>("");
+  const { updateCell } = useActions();
 
   useEffect(() => {
     const timer = setTimeout(async () => {
-      const output = await bundle(input);
+      const output = await bundle(cell.content);
       setCode(output?.code);
       setErr(output?.err);
     }, 750);
     return () => {
       clearTimeout(timer);
     };
-  }, [input]);
+  }, [cell.content]);
 
   const changeHandler: OnChange = (value) => {
-    setInput(value);
+    if (value) updateCell({ id: cell.id, content: value });
   };
 
   return (
     <Resizable direction="vertical" className="code-cell">
       <>
-        {/* <button onClick={onClick}>asd</button> */}
         <div
           style={{
             height: "100%",
@@ -39,9 +44,9 @@ function CodeCell() {
         >
           <Resizable direction="horizontal">
             <CodeEditor
-              value={input}
+              value={cell.content}
               onChange={changeHandler}
-              setValue={setInput}
+              id={cell.id}
             />
           </Resizable>
           <Preview code={code} err={err} />
@@ -49,6 +54,6 @@ function CodeCell() {
       </>
     </Resizable>
   );
-}
+};
 
 export default CodeCell;

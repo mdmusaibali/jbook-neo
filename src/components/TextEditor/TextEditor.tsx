@@ -1,11 +1,19 @@
 import { useState, useEffect, useRef } from "react";
 import MDEditor from "@uiw/react-md-editor";
 import "./TextEditor.scss";
+import { Cell } from "../../store/types/cells";
+import { useActions } from "../../hooks/useActions";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 
-const TextEditor = () => {
+interface TextEditorProps {
+  cell: Cell;
+}
+
+const TextEditor = ({ cell }: TextEditorProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [editing, setEditing] = useState(false);
-  const [input, setInput] = useState<string | undefined>("# Hello");
+  const themeCtx = useTypedSelector((state) => state.theme);
+  const { updateCell } = useActions();
 
   useEffect(() => {
     const listener = (e: MouseEvent) => {
@@ -22,15 +30,15 @@ const TextEditor = () => {
   }, []);
 
   const inputChangeHandler = (value: string | undefined) => {
-    setInput(value);
+    updateCell({ id: cell.id, content: value ? value : "" });
   };
 
   if (editing) {
     return (
-      <div ref={ref} data-color-mode="light">
+      <div ref={ref} data-color-mode={themeCtx.theme}>
         <MDEditor
           className="text-editor"
-          value={input}
+          value={cell.content}
           onChange={inputChangeHandler}
         />
       </div>
@@ -38,8 +46,11 @@ const TextEditor = () => {
   }
 
   return (
-    <div onClick={() => setEditing(true)} data-color-mode="light">
-      <MDEditor.Markdown className="text-markdown" source={input} />
+    <div onClick={() => setEditing(true)} data-color-mode={themeCtx.theme}>
+      <MDEditor.Markdown
+        className="text-markdown"
+        source={cell.content || "&nbsp;Click to edit"}
+      />
     </div>
   );
 };

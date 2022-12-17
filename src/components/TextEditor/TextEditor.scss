@@ -3,11 +3,6 @@
 
 .text-editor,
 .text-markdown {
-  @include shadow();
-  border-radius: var.$border-radius-medium-1;
-  overflow: hidden;
-  border: 3px solid black;
-
   .w-md-editor-bar {
     height: 10px;
     cursor: row-resize;

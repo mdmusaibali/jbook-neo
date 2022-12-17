@@ -1,13 +1,11 @@
-// $color-primary: #f9ed69;
-$color-primary: #50ffaf;
-// $color-secondary: #f08a5d;
-$color-secondary: #f2de3a;
-$color-tertiary: #b83b5e;
-$color-quaternary: #6a2c70;
-$color-black: #000;
+$color-primary: var(--color-primary);
+$color-secondary: var(--color-secondary);
+$color-tertiary: var(--color-tertiary);
+$color-black: var(--color-black);
 $color-white: #fff;
-
+$color-text: var(--color-text);
 $border-radius-small: 4px;
+$border-radius-small-2: 6px;
 $border-radius-medium: 8px;
 $border-radius-medium-1: 10px;
 $border-radius-medium-2: 12px;

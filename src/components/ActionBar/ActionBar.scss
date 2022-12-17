@@ -1,0 +1,9 @@
+.action-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 2;
+  gap: 0.5rem;
+  margin-right: 8px;
+  transform: translateY(-1.5px);
+}
