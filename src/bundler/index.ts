@@ -22,6 +22,8 @@ const bundle = async (rawCode: string | undefined) => {
         [env]: '"production"',
         golbal: "window",
       },
+      jsxFactory: "_React.createElement",
+      jsxFragment: "_React.Fragment",
     });
     return {
       code: result.outputFiles[0].text,

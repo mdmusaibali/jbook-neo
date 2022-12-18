@@ -10,6 +10,7 @@ import { createBundle } from "../../store/thunks/bundlesThunk";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useTypedDispatch } from "../../hooks/useTypedDispatch";
 import Spinner from "../Spinner/Spinner";
+import { useCumulativeCode } from "../../hooks/useCumulativeCode";
 
 interface CodeCellProps {
   cell: Cell;
@@ -19,20 +20,23 @@ const CodeCell = ({ cell }: CodeCellProps) => {
   const { updateCell } = useCellsActions();
   const bundle = useTypedSelector((state) => state.bundles[cell.id]);
   const dispatch = useTypedDispatch();
+  const cumulativeCode = useCumulativeCode(cell.id);
+
+  // console.log("cumulative code", cumulativeCode);
 
   useEffect(() => {
     if (!bundle) {
-      dispatch(createBundle({ cellId: cell.id, input: cell.content }));
+      dispatch(createBundle({ cellId: cell.id, input: cumulativeCode }));
       return;
     }
     const timer = setTimeout(async () => {
-      dispatch(createBundle({ cellId: cell.id, input: cell.content }));
+      dispatch(createBundle({ cellId: cell.id, input: cumulativeCode }));
     }, 750);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [cell.content, cell.id]);
+  }, [cumulativeCode, cell.id]);
 
   const changeHandler: OnChange = (value) => {
     if (value) updateCell({ id: cell.id, content: value });

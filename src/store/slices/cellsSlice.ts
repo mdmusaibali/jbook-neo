@@ -31,7 +31,7 @@ const cellsSlice = createSlice({
     },
     insertCell(state, action: InsertCellAfterAction) {
       const cell: Cell = {
-        content: action.payload.type === "code" ? defaultHTMLForEditor : "",
+        content: "",
         type: action.payload.type,
         id: randomId(),
       };

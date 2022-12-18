@@ -1,5 +1,4 @@
 import Editor, { OnChange, OnMount } from "@monaco-editor/react";
-import React from "react";
 import prettier from "prettier";
 import parser from "prettier/parser-babel";
 import styles from "./CodeEditor.module.scss";
@@ -44,7 +43,7 @@ const CodeEditor = ({ value, onChange, id }: CodeEditorProps) => {
       </button>
       <Editor
         className={styles["code-editor-container--editor"]}
-        defaultValue={defaultHTMLForEditor}
+        defaultValue={""}
         value={value}
         onChange={onChange}
         defaultLanguage="javascript"
