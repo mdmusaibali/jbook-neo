@@ -3,8 +3,9 @@ import React from "react";
 import prettier from "prettier";
 import parser from "prettier/parser-babel";
 import styles from "./CodeEditor.module.scss";
-import { useActions } from "../../hooks/useActions";
+import { useCellsActions } from "../../hooks/useActions/useCellsActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { defaultHTMLForEditor } from "../../constants/data";
 
 interface CodeEditorProps {
   value: string | undefined;
@@ -13,7 +14,7 @@ interface CodeEditorProps {
 }
 
 const CodeEditor = ({ value, onChange, id }: CodeEditorProps) => {
-  const { updateCell } = useActions();
+  const { updateCell } = useCellsActions();
   const themeCtx = useTypedSelector((state) => state.theme);
 
   const formatHandler = () => {
@@ -43,15 +44,7 @@ const CodeEditor = ({ value, onChange, id }: CodeEditorProps) => {
       </button>
       <Editor
         className={styles["code-editor-container--editor"]}
-        defaultValue={`import React from "react";
-import ReactDOM from "react-dom";
-        
-const App = () => {
-    return <h1>Hello World</h1>;
-};
-        
-ReactDOM.render(<App />, document.querySelector("#root"));
-        `}
+        defaultValue={defaultHTMLForEditor}
         value={value}
         onChange={onChange}
         defaultLanguage="javascript"

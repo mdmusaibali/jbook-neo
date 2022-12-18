@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { FaMoon, FaRegSun } from "react-icons/fa";
 import { checkThemeInLocalStorage } from "../../utils/helper";
-import { useThemeActions } from "../../hooks/useThemeActions";
+import { useThemeActions } from "../../hooks/useActions/useThemeActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 const ThemeSwitch = () => {

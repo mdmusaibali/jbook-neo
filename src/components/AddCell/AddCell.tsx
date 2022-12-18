@@ -1,4 +1,4 @@
-import { useActions } from "../../hooks/useActions";
+import { useCellsActions } from "../../hooks/useActions/useCellsActions";
 import { FaPlus } from "react-icons/fa";
 
 import "./AddCell.scss";
@@ -9,7 +9,7 @@ interface AddCellProps {
 }
 
 const AddCell = ({ prevCellId, last }: AddCellProps) => {
-  const { insertCell } = useActions();
+  const { insertCell } = useCellsActions();
 
   const insertHandler = (id: string | null, type: "text" | "code") => {
     insertCell({ id, type });

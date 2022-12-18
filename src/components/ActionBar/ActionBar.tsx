@@ -1,4 +1,4 @@
-import { useActions } from "../../hooks/useActions";
+import { useCellsActions } from "../../hooks/useActions/useCellsActions";
 import { Direction } from "../../store/types/cells";
 import "./ActionBar.scss";
 import { FaArrowUp, FaArrowDown, FaTrash } from "react-icons/fa";
@@ -7,7 +7,7 @@ interface ActionBarProps {
   id: string;
 }
 const ActionBar = ({ id }: ActionBarProps) => {
-  const { moveCell, deleteCell } = useActions();
+  const { moveCell, deleteCell } = useCellsActions();
 
   const moveHandler = (direction: Direction) => {
     moveCell({ id, direction });

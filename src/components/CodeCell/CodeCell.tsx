@@ -1,32 +1,38 @@
 import { useEffect, useState } from "react";
 import CodeEditor from "./../CodeEditor/CodeEditor";
 import { OnChange } from "@monaco-editor/react";
-import bundle from "./../../bundler";
 import Preview from "./../Preview/Preview";
 import Resizable from "../Resizable/Resizable";
 import "./CodeCell.scss";
 import { Cell } from "../../store/types/cells";
-import { useActions } from "../../hooks/useActions";
+import { useCellsActions } from "../../hooks/useActions/useCellsActions";
+import { createBundle } from "../../store/thunks/bundlesThunk";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { useTypedDispatch } from "../../hooks/useTypedDispatch";
+import Spinner from "../Spinner/Spinner";
 
 interface CodeCellProps {
   cell: Cell;
 }
 
 const CodeCell = ({ cell }: CodeCellProps) => {
-  const [code, setCode] = useState<string | undefined>("");
-  const [err, setErr] = useState<string | undefined>("");
-  const { updateCell } = useActions();
+  const { updateCell } = useCellsActions();
+  const bundle = useTypedSelector((state) => state.bundles[cell.id]);
+  const dispatch = useTypedDispatch();
 
   useEffect(() => {
+    if (!bundle) {
+      dispatch(createBundle({ cellId: cell.id, input: cell.content }));
+      return;
+    }
     const timer = setTimeout(async () => {
-      const output = await bundle(cell.content);
-      setCode(output?.code);
-      setErr(output?.err);
+      dispatch(createBundle({ cellId: cell.id, input: cell.content }));
     }, 750);
+
     return () => {
       clearTimeout(timer);
     };
-  }, [cell.content]);
+  }, [cell.content, cell.id]);
 
   const changeHandler: OnChange = (value) => {
     if (value) updateCell({ id: cell.id, content: value });
@@ -49,7 +55,13 @@ const CodeCell = ({ cell }: CodeCellProps) => {
               id={cell.id}
             />
           </Resizable>
-          <Preview code={code} err={err} />
+          {!bundle || bundle.loading ? (
+            <div className="progress-cover">
+              <Spinner />
+            </div>
+          ) : (
+            <Preview code={bundle.code} err={bundle.err} />
+          )}
         </div>
       </>
     </Resizable>

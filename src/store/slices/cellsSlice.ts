@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { defaultHTMLForEditor } from "../../constants/data";
 import { randomId } from "../../utils/helper";
 import {
   Cell,
@@ -22,7 +23,6 @@ const cellsSlice = createSlice({
   reducers: {
     updateCell(state, action: UpdateCellAction) {
       const { content, id } = action.payload;
-      // jalva with immer
       state.data[id].content = content;
     },
     deleteCell(state, action: DeleteCellAction) {
@@ -31,7 +31,7 @@ const cellsSlice = createSlice({
     },
     insertCell(state, action: InsertCellAfterAction) {
       const cell: Cell = {
-        content: "",
+        content: action.payload.type === "code" ? defaultHTMLForEditor : "",
         type: action.payload.type,
         id: randomId(),
       };

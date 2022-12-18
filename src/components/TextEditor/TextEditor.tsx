@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import MDEditor from "@uiw/react-md-editor";
 import "./TextEditor.scss";
 import { Cell } from "../../store/types/cells";
-import { useActions } from "../../hooks/useActions";
+import { useCellsActions } from "../../hooks/useActions/useCellsActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 interface TextEditorProps {
@@ -13,7 +13,7 @@ const TextEditor = ({ cell }: TextEditorProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [editing, setEditing] = useState(false);
   const themeCtx = useTypedSelector((state) => state.theme);
-  const { updateCell } = useActions();
+  const { updateCell } = useCellsActions();
 
   useEffect(() => {
     const listener = (e: MouseEvent) => {
