@@ -24,6 +24,12 @@ body {
   --color-text: #000;
 }
 
+a {
+  text-decoration: none;
+  color: variables.$color-text;
+  font-weight: 500;
+}
+
 .button {
   &--primary {
     background-color: variables.$color-secondary;

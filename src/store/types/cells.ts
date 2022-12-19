@@ -48,3 +48,10 @@ export interface InsertCellAfterAction {
   };
   type: string;
 }
+
+export interface SetCellStateAction {
+  payload: {
+    cells: CellsState;
+  };
+  type: string;
+}

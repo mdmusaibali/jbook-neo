@@ -1,3 +1,4 @@
+import FileButtons from "../FileButtons/FileButtons";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 import styles from "./Header.module.scss";
 
@@ -6,13 +7,15 @@ const Header = () => {
     <div className={styles["header"]}>
       <h1 className={styles["heading"]}>JSBOOK NEO</h1>
       <ThemeSwitch />
-      <a
+      <FileButtons type="download" />
+      <FileButtons type="upload" />
+      {/* <a
         href="https://www.google.com"
         target={"_blank"}
         className={styles["install"]}
       >
         npm install
-      </a>
+      </a> */}
     </div>
   );
 };

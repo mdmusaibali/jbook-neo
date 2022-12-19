@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 import { defaultHTMLForEditor } from "../../constants/data";
 import { randomId } from "../../utils/helper";
 import {
@@ -7,6 +8,7 @@ import {
   DeleteCellAction,
   InsertCellAfterAction,
   MoveCellAction,
+  SetCellStateAction,
   UpdateCellAction,
 } from "../types/cells";
 
@@ -55,6 +57,13 @@ const cellsSlice = createSlice({
       }
       state.order[index] = state.order[targetIndex];
       state.order[targetIndex] = id;
+    },
+    setCellState(state, action: SetCellStateAction) {
+      const newState = action.payload.cells;
+      state.data = newState.data;
+      state.error = newState.error;
+      state.order = newState.order;
+      toast.success("jsbook-neo added");
     },
   },
 });

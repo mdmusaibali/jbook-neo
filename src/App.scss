@@ -2,9 +2,19 @@
   padding: 10px 20px;
   max-width: 1400px;
   margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
 }
 
 .heading {
   font-family: "Bangers", cursive;
   letter-spacing: 2px;
+}
+
+.Toastify__close-button--light {
+  opacity: 1 !important;
+}
+.Toastify__close-button--dark {
+  opacity: 1 !important;
+  color: #000 !important;
 }
